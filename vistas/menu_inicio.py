@@ -8,10 +8,8 @@ from vistas.completos import VistaCompletos
 class MenuPrincipal:
     def __init__(self):
         self.root = tk.Tk()
- feature/titulo-kelvin
-        self.root.title("Sistema de Tickets Oficial")        self.root.geometry("400x350")
-
- develop
+        self.root.title("Sistema de Tickets Oficial")
+        self.root.geometry("400x350")
         
         # Título
         tk.Label(self.root, text="MENÚ PRINCIPAL", font=("Arial", 16, "bold")).pack(pady=30)
@@ -22,8 +20,7 @@ class MenuPrincipal:
         tk.Button(self.root, text="3. Tickets Completos", width=25, height=2, command=self.abrir_completos).pack(pady=10)
 
     def abrir_nuevo(self):
-        
-       VistaNuevoTicket(self.root)
+        VistaNuevoTicket(self.root)
 
     def abrir_pendientes(self):
         VistaPendientes(self.root)

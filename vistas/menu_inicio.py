@@ -8,7 +8,7 @@ from vistas.completos import VistaCompletos
 class MenuPrincipal:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Gestor de Tickets - Inicio")
+        self.root.title("Gestor de Tickets V2.0")
         self.root.geometry("400x350")
         
         # Título

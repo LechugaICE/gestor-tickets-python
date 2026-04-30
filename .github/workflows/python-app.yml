@@ -19,10 +19,9 @@ jobs:
         
     - name: Instalar dependencias
       run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest sqlalchemy
+       python -m pip install --upgrade pip
+        pip install pytest pytest-cov sqlalchemy
         
-    - name: Ejecutar Pruebas Unitarias (TDD)
+    - name: Ejecutar Suite de Pruebas y Cobertura
       run: |
-        # Esto ejecuta las pruebas que acabamos de hacer
-        pytest tests/ -v
+        python -m pytest --cov=logica tests/ -v

@@ -91,8 +91,8 @@ class VistaPendientes:
         valores = self.tabla.item(seleccion, 'values')
         id_ticket = valores[1]
         
-        ticket_data = next((t for t in gestor_principal.tickets if t['id'] == id_ticket), None)
-        
+        #ticket_data = next((t for t in gestor_principal.tickets if t['id'] == id_ticket), None)
+        ticket_data = gestor_principal.obtener_ticket_por_id(id_ticket)
         if ticket_data:
             VistaDetalle(self.ventana, ticket_data, self.actualizar_tabla)
 

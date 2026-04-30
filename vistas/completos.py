@@ -42,6 +42,9 @@ class VistaCompletos:
         """Carga los tickets que tienen estado 'Completo'"""
         tickets_resueltos = gestor_principal.obtener_completos()
         
+        for fila in self.tabla.get_children():
+            self.tabla.delete(fila)
+            
         for t in tickets_resueltos:
             # Aquí no ponemos colores de fondo porque ya están resueltos (historial neutral)
             valores = (t['id'], t['problema'], t['prioridad'], t['fecha'])

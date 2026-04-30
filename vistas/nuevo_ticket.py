@@ -3,14 +3,16 @@ import tkinter as tk
 from tkinter import ttk, messagebox  # ¡Importante! ttk es necesario para el Combobox
 from datetime import datetime
 from logica.gestor import gestor_principal
+from logica.automatizacion import calcular_prioridad
 
 class VistaNuevoTicket:
     def __init__(self, parent, callback_actualizar=None):
         self.ventana = tk.Toplevel(parent)
         self.ventana.title("Crear Nuevo Ticket")
         self.ventana.geometry("400x550")
-        
-        self.prioridad_seleccionada = None
+        self.ventana.grab_set()
+
+        self.prioridad_seleccionada = None # ### NUEVO: Descomentado para evitar errores si no se selecciona nada
         self.callback_actualizar = callback_actualizar 
 
         self.crear_interfaz()
@@ -19,6 +21,9 @@ class VistaNuevoTicket:
         tk.Label(self.ventana, text="Problema (Máx 5 palabras):", font=("Arial", 10, "bold")).pack(pady=(15, 0))
         self.entrada_problema = tk.Entry(self.ventana, width=40)
         self.entrada_problema.pack(pady=5)
+
+        # ### NUEVO:detecta cuando escribes
+        self.entrada_problema.bind("<KeyRelease>", self.actualizar_prioridad_en_vivo)
 
         tk.Label(self.ventana, text="Prioridad:", font=("Arial", 10, "bold")).pack(pady=(10, 0))
         
@@ -79,6 +84,19 @@ class VistaNuevoTicket:
 
         tk.Button(frame_botones, text="Cancelar", command=self.ventana.destroy, width=15).pack(side="left", padx=10)
         tk.Button(frame_botones, text="Confirmar", command=self.validar_y_guardar, bg="lightblue", font=("Arial", 10, "bold"), width=15).pack(side="right", padx=10)
+
+    
+    def actualizar_prioridad_en_vivo(self, event):
+        texto_actual = self.entrada_problema.get()
+        nivel = calcular_prioridad(texto_actual)
+        
+        # Mapeamos el resultado 
+        if nivel == "Baja":
+            self.seleccionar_prioridad("Verde", self.btn_verde)
+        elif nivel == "Moderada":
+            self.seleccionar_prioridad("Amarilla", self.btn_amarillo)
+        elif nivel == "Alta":
+            self.seleccionar_prioridad("Roja", self.btn_rojo)
 
     def seleccionar_prioridad(self, color, boton):
         self.prioridad_seleccionada = color

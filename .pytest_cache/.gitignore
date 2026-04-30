@@ -1,0 +1,8 @@
+# Base de datos local
+tickets.db
+
+# Caché de Python y Pruebas Unitarias
+__pycache__/
+.pytest_cache/
+.coverage
+*.pyc

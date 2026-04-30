@@ -7,13 +7,22 @@ on:
     branches: [ "main", "develop" ]
 
 jobs:
-  lint:
+  build:  
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Configurar Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
-      - name: Revisar errores de sintaxis
-        run: python -m py_compile main.py logica/*.py vistas/*.py
+    - uses: actions/checkout@v3
+    
+    - name: Configurar Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+        
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest sqlalchemy
+        
+    - name: Ejecutar Pruebas Unitarias (TDD)
+      run: |
+        # Esto ejecuta las pruebas que acabamos de hacer
+        pytest tests/ -v

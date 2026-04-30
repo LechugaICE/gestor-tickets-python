@@ -1,8 +1,0 @@
-[
-  "tests/test_gestor.py::test_flujo_base_de_datos_orm",
-  "tests/test_prioridad.py::test_prioridad_alta_emergencias_ti",
-  "tests/test_prioridad.py::test_prioridad_alta_por_servidor",
-  "tests/test_prioridad.py::test_prioridad_baja_mantenimiento_general",
-  "tests/test_prioridad.py::test_prioridad_defecto_desconocido",
-  "tests/test_prioridad.py::test_prioridad_moderada_soporte_normal"
-]
